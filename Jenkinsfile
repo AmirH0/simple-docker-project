@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/AmirH0/simple-docker-project.git'
+               git branch: 'main', url: 'https://github.com/AmirH0/simple-docker-project.git'
             }
         }
         stage('Build Docker Image') {
@@ -19,7 +19,7 @@ pipeline {
 
         
     }
-    
+
     post {
         success {
             echo '✅ Deployment successful!'
