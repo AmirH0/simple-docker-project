@@ -1,34 +1,32 @@
 pipeline {
     agent any
 
-    environment {
-        APP_NAME = "simple-docker-project"
-        IMAGE_TAG = "latest"
-    }
-
     stages {
-
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/AmirH0/simple-docker-project.git'
+                git 'https://github.com/AmirH0/simple-docker-project.git'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build Image') {
             steps {
-                sh "docker build -t ${APP_NAME}:${IMAGE_TAG} ./app"
+                sh 'docker build -t simple-docker-project:latest ./app'
             }
         }
 
-        stage('Deploy with Docker Compose') {
+        stage('Deploy') {
             steps {
-                sh "docker compose up -d --build"
+                sh 'docker compose -f docker-compose.yml up -d --build app'
             }
         }
     }
 
     post {
-        success { echo "Pipeline completed successfully!" }
-        failure { echo "Pipeline failed." }
+        success {
+            echo '✅ Deployment successful!'
+        }
+        failure {
+            echo '❌ Build failed!'
+        }
     }
 }
