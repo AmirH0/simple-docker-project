@@ -11,11 +11,11 @@ pipeline {
                 sh 'docker build -t simple-docker-project:latest ./app'
             }
         }
-        stage('Deploy') {
-            steps {
-                sh 'docker compose up -d --build'
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         sh 'docker compose up -d --build'
+        //     }
+        // }
 
         
     }
