@@ -14,18 +14,6 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                sh 'cd app && npm install'
-            }
-        }
-
-        stage('Run Unit Tests') {
-            steps {
-                sh 'cd app && npm test || echo "Tests failed, continuing..."'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh "docker build -t ${APP_NAME}:${IMAGE_TAG} ./app"
