@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.send(`Hello — served by container hostname: ${process.env.HOSTNAME} (${os.hostname()})`);
+  res.send(`Hello (salam)— served by container hostname: ${process.env.HOSTNAME} (${os.hostname()})`);
 });
 
 app.get('/health', (req, res) => res.send('ok'));
